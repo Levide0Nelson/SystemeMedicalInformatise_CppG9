@@ -1,0 +1,20 @@
+#ifndef MEDICAMENT_H
+#define MEDICAMENT_H
+
+/** Classe Medicament : Permet la modélisation des prescriptions faites lors des consultations
+    Assure le suivi thérapeutique du patient, Préviens les interactions médicamenteuses ou les
+    allergies (via les antécédents), Gère les stocks ou disponibiltés éventuellement
+*/
+
+class Medicament
+{
+    public:
+        Medicament();
+        virtual ~Medicament();
+
+    protected:
+
+    private:
+};
+
+#endif // MEDICAMENT_H
