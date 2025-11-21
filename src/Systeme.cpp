@@ -3,8 +3,7 @@
 #include <algorithm>
 #include <limits>
 #include <sstream>
-#include <map> // 👈 NÉCESSAIRE POUR VOS STATISTIQUES (CATÉGORISATION)
-
+#include <map> 
 using namespace std;
 
 // --- DÉFINITION DES COULEURS (À PARTAGER) ---
@@ -16,8 +15,6 @@ using namespace std;
 
 // --- STRUCTURES COMMUNES (Implémentées par le Chef de Projet/Membres 3/4) ---
 
-Systeme::Systeme() : nextUserId(100), nextDossierId(1000), nextConsultationId(1), nextAntecedentId(1), utilisateurActuel(nullptr) {
-    creerUtilisateursInitiaux();
 }
 
 Systeme::~Systeme() {
@@ -26,24 +23,14 @@ Systeme::~Systeme() {
 
 DossierMedical* Systeme::trouverDossier(int idPatient) {
     // Implémentation du Membre 3
-    auto it = std::find_if(dossiers.begin(), dossiers.end(), 
-                           [idPatient](const DossierMedical& dm) { return dm.getIdPatient() == idPatient; });
-    return (it != dossiers.end()) ? &(*it) : nullptr;
+    
 }
 
 void Systeme::creerUtilisateursInitiaux() {
     // Implémentation du Membre 4
-    utilisateurs.push_back(make_unique<Administrateur>(nextUserId++, "admin", "admin123", "Gille-Christ", "GANSE", ADMINISTRATION_IT));
-    utilisateurs.push_back(make_unique<ProfessionnelDeSante>(nextUserId++, "dr.dupont", "securite456", "Dupont", "Jean", CARDIOLOGIE));
-    
-    int patientId = nextUserId++;
-    utilisateurs.push_back(make_unique<Patient>(patientId, "p.martin", "patient789", "Martin", "Sophie", "PAT001", ROLE_PATIENT));
     
     // Implémentation du Membre 3
-    dossiers.emplace_back(nextDossierId++, patientId, Date(15, 11, 2025));
-    DossierMedical* dm = trouverDossier(patientId);
-    if (dm) {
-        dm->ajouterAntecedent(Antecedent("Allergie Pénicilline", "Allergie", Date(1, 1, 2010)));
+    
         
         // VOS DONNÉES DE TEST : Une consultation initiale pour vérifier vos statistiques
         dm->ajouterConsultation(Consultation(nextConsultationId++, Date(16, 11, 2025), 101, patientId, CARDIOLOGIE, "Bilan annuel", "Patient en bonne santé."));
@@ -63,12 +50,12 @@ void Systeme::menuProfessionnelDeSante() { /* Code Membre 6 */ }
 void Systeme::menuPatient() { /* Code Membre 6 */ }
 
 
-// 🌟🌟🌟 VOS IMPLÉMENTATIONS DE MEMBRE 5 🌟🌟🌟
+
 
 /**
  * Logique : Programmation des Consultations (Obligatoire + Bonus Prescription/Spécialité)
  */
-void Systeme::programmerConsultation() {
+void Systeme::programmerConsultation() { 
     // Vérification de rôle (dépendance Membre 4)
     if (!dynamic_cast<ProfessionnelDeSante*>(utilisateurActuel)) {
         std::cout << COULEUR_ROUGE << "Erreur : Seul un Professionnel de Santé peut programmer une consultation." << COULEUR_RESET << std::endl;
@@ -88,7 +75,8 @@ void Systeme::programmerConsultation() {
         return; 
     }
     
-    // Récupération de la Spécialité (Bonus Catégorisation)
+    // Récupération de la Spécialité 
+
     ProfessionnelDeSante* psConnecte = static_cast<ProfessionnelDeSante*>(utilisateurActuel);
     
     // Saisie des données
@@ -99,7 +87,8 @@ void Systeme::programmerConsultation() {
     // Création de la Consultation (Intègre la Specialite)
     Consultation nouvelleConsultation(nextConsultationId, Date(j, m, a), utilisateurActuel->getId(), idPatient, psConnecte->getSpecialite(), motif, observations);
     
-    // Gestion de la Prescription (BONUS PRESCRIPTION)
+    // Gestion de la Prescription 
+
     int choixPresc;
     std::cout << "Voulez-vous ajouter une prescription à cette consultation? (1=Oui, 0=Non): "; 
     if (!(std::cin >> choixPresc)) { choixPresc = 0; }
@@ -167,13 +156,14 @@ void Systeme::afficherStatistiques() {
     std::cout << "Patients : " << nbPatients << " | PS : " << nbPS << " | Consultations : " << nbConsultations << std::endl;
     std::cout << "Dossiers Médicaux Archivés : " << nbDossiersArchives << std::endl;
     
-    // Répartition par Spécialité (BONUS)
+    // Répartition par Spécialité 
+
     std::cout << "\n--- Répartition par Spécialité ---" << std::endl;
     for (const auto& pair : consultationsParSpecialite) {
         std::cout << "  - " << specialiteToString(pair.first) << " : " << pair.second << " consultation(s)" << std::endl;
     }
 
-    // PS le plus actif (BONUS)
+    // PS le plus actif 
     if (!consultationsParPS.empty()) {
         auto bestPS = std::max_element(consultationsParPS.begin(), consultationsParPS.end(),
             [](const auto& a, const auto& b) { return a.second < b.second; });
