@@ -1,11 +1,6 @@
 #include "Medicament.h"
+#include <iostream>
 
-Medicament::Medicament()
-{
-    //ctor
-}
-
-Medicament::~Medicament()
-{
-    //dtor
+void Medicament::afficher() const {
+    std::cout << "    - " << nomCommercial << " (Actif: " << principeActif << ")" << std::endl;
 }
