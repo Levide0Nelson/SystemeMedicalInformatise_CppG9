@@ -8,9 +8,9 @@
 #include <limits>
 #include <cstdlib>
 
-// Inclusion des headers (Note l'espace pour ProfessionnelSante .h)
+// Inclusion des headers
 #include "include/Patient.h"
-#include "include/ProfessionnelSante .h"
+#include "include/ProfessionnelSante.h"
 #include "include/Consultation.h"
 #include "include/Statistiques.h"
 #include "include/Administrateur.h"
@@ -78,7 +78,28 @@ int main() {
                 break;
 
             case 2:
-                cout << "Menu Pro en construction..." << endl;
+                cout << " [EN CONSTRUCTION] Menu Professionnels de Sante..." << endl;
+                #ifdef _WIN32
+                system("pause");
+                #endif
+                break;
+
+            case 3:
+                 cout << " [EN CONSTRUCTION] Menu Consultations..." << endl;
+                #ifdef _WIN32
+                system("pause");
+                #endif
+                break;
+
+            case 4:
+                 cout << " [EN CONSTRUCTION] Tableau de bord Statistiques..." << endl;
+                #ifdef _WIN32
+                system("pause");
+                #endif
+                break;
+
+            case 5:
+                 cout << " [EN CONSTRUCTION] Menu Administration..." << endl;
                 #ifdef _WIN32
                 system("pause");
                 #endif

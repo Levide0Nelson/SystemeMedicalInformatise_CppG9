@@ -1,4 +1,4 @@
-#include "ProfessionnelSante .h"
+#include "ProfessionnelSante.h"
 
 ProfessionnelSante ::ProfessionnelSante ()
 {

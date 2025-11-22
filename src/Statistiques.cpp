@@ -1,8 +1,28 @@
-#include "Statistiques.h"
+#include "../include/Statistiques.h"
 #include <iostream>
 #include <algorithm> // Pour std::max_element
+#include <map>       // Manquait pour les std::map
 
-// L'implémentation de la fonction d'affichage et de calcul
+// --- Imports nécessaires pour que le compilateur connaisse les autres classes ---
+#include "../include/Utilisateur.h"
+#include "../include/DossierMedical.h"
+#include "../include/Consultation.h"
+#include "../include/Enumeration.h"
+
+using namespace std;
+
+// Définition des couleurs (au cas où elles manquent)
+#ifndef COULEUR_JAUNE
+#define COULEUR_JAUNE "\033[33m"
+#define COULEUR_RESET "\033[0m"
+#endif
+
+// Simulation des rôles (pour éviter l'erreur "not declared")
+#ifndef ROLE_PATIENT
+#define ROLE_PATIENT 0
+#define ROLE_PS 1
+#endif
+
 void Statistiques::afficherRapport(
     const std::vector<std::unique_ptr<Utilisateur>>& utilisateurs,
     const std::vector<DossierMedical>& dossiers
@@ -11,45 +31,58 @@ void Statistiques::afficherRapport(
     int nbPS = 0;
     int nbConsultations = 0;
     int nbDossiersArchives = 0;
-    
-    // Maps pour la Catégorisation et le décompte (Bonus)
-    std::map<Specialite, int> consultationsParSpecialite;
-    std::map<int, int> consultationsParPS; // Compte par ID du Professionnel de Santé
 
-    // 1. Parcours des Utilisateurs (pour Patients et PS)
+    // Maps pour la Catégorisation et le décompte
+    std::map<Specialite, int> consultationsParSpecialite;
+    std::map<int, int> consultationsParPS;
+
+    // 1. Parcours des Utilisateurs
+    // NOTE DU MEMBRE 6 : Partie désactivée car Utilisateur.h n'a pas encore getRole()
+    // Décommentez ceci quand le Membre 4 aura fini son code.
+    /*
     for (const auto& u : utilisateurs) {
         if (u->getRole() == ROLE_PATIENT) nbPatients++;
         else if (u->getRole() == ROLE_PS) nbPS++;
     }
+    */
+    cout << "[INFO] Stats Utilisateurs en attente (Manque getRole)" << endl;
 
     // 2. Parcours des Dossiers et des Consultations
+    // NOTE DU MEMBRE 6 : Partie désactivée car DossierMedical.h est encore vide
+    // Décommentez ceci quand le Membre 3 aura fini son code.
+    /*
     for (const auto& dm : dossiers) {
-        if (dm.isArchive()) nbDossiersArchives++; // Compteur d'archivage (Bonus Membre 3)
-        
-        // Itération sur les consultations (Dépendance Membre 5)
+        if (dm.isArchive()) nbDossiersArchives++;
+
         for (const auto& c : dm.getConsultations()) {
             nbConsultations++;
-            
-            // Catégorisation par Spécialité (BONUS Membre 5)
+
+            // Catégorisation par Spécialité
             consultationsParSpecialite[c.getSpecialite()]++;
-            
-            // Comptage par PS (Statistique de performance BONUS Membre 5)
+
+            // Comptage par PS
             consultationsParPS[c.getIdProfessionnel()]++;
         }
     }
-    
+    */
+    cout << "[INFO] Stats Dossiers en attente (Manque getConsultations)" << endl;
+
     // 3. Affichage du Rapport
-    std::cout << COULEUR_JAUNE << "\n--- STATISTIQUES DU SYSTÈME MEDIPASS ---" << COULEUR_RESET << std::endl;
+    std::cout << COULEUR_JAUNE << "\n--- STATISTIQUES DU SYSTEME MEDIPASS ---" << COULEUR_RESET << std::endl;
     std::cout << "========================================" << std::endl;
-    std::cout << "Patients enregistrés : " << nbPatients << std::endl;
-    std::cout << "Professionnels de Santé : " << nbPS << std::endl;
+    std::cout << "Patients enregistres : " << nbPatients << std::endl;
+    std::cout << "Professionnels de Sante : " << nbPS << std::endl;
     std::cout << "Consultations totales : " << nbConsultations << std::endl;
-    std::cout << "Dossiers Médicaux Archivés : " << nbDossiersArchives << std::endl;
-    
+    std::cout << "Dossiers Medicaux Archives : " << nbDossiersArchives << std::endl;
+
     // Répartition par Spécialité (BONUS)
-    std::cout << "\n--- Répartition par Spécialité ---" << std::endl;
-    for (const auto& pair : consultationsParSpecialite) {
-        std::cout << "  - " << specialiteToString(pair.first) << " : " << pair.second << " consultation(s)" << std::endl;
+    std::cout << "\n--- Repartition par Specialite ---" << std::endl;
+    if (consultationsParSpecialite.empty()) {
+        std::cout << "  (Aucune donnee disponible)" << std::endl;
+    } else {
+        for (const auto& pair : consultationsParSpecialite) {
+            std::cout << "  - " << specialiteToString(pair.first) << " : " << pair.second << " consultation(s)" << std::endl;
+        }
     }
 
     // PS le plus actif (BONUS)

@@ -4,13 +4,13 @@
 #include <vector>
 #include <memory>
 #include <string>
-#include <map> 
+#include <map>
 
 // Dépendances des structures de données à analyser
-#include "Utilisateur.h" 
-#include "DossierMedical.h" 
+#include "Utilisateur.h"
+#include "DossierMedical.h"
 #include "Consultation.h"
-#include "Specialite.h"
+#include "Enumeration.h"
 
 // Définitions des couleurs (pour l'affichage)
 #define COULEUR_JAUNE "\033[33m"
