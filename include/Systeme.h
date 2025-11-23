@@ -1,20 +1,77 @@
 #ifndef SYSTEME_H
 #define SYSTEME_H
 
+#include <vector>
+#include <string>
+#include "Patient.h"
+#include "ProfessionnelDeSante.h"
+#include "DossierMedical.h"
+#include "Administrateur.h"
+#include "Consultation.h"
+#include "Antecedent.h"
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
+
 /** Classe Systeme : Gère l'ensemble des donnnées et opérations du système médical
     Fournit des méthodes pour ajouter, rechercher, modifier et permet de lancer une interfacce console de base
     + Sauvegarde et chargement des données
 */
 
+
 class Systeme
 {
     public:
+        //Constructeur par défaut
         Systeme();
-        virtual ~Systeme();
+
+        // ----Gestion de l'authentification-----
+        Utilisateur* authentifier(const std::string& username, const std::string& password);
+
+        // ----Persistance des données ---
+        void chargerDonnes();
+        void sauvegarderDonnees() const;
+
+        // ----Gestion des utilisateurs ---
+        void ajouterAdministrateur(const Administrateur& admin);
+        void ajouterProfessionnel(const ProfessionnelDeSante& pro);
+        Administrateur* rechercherAdmin(const std::string& username);
+        ProfessionnelDeSante* rechercherPro(const std::string& username);
+
+        // ---Menu principal----
+        void lancerMenu();
+
+        // utilitaires internes
+        int genererIdPatient();
+        int genererIdConsultation();
+        int genererIdAntecedent();
+
+        void menuGestionUtilisateurs();
+        void menuInscriptionPatient();
 
     protected:
 
     private:
+        // Stockage centralisé
+        std::vector<Administrateur> m_admins;
+        std::vector<ProfessionnelDeSante> m_professionnels;
+
+        // Identifiant généré auto
+        int m_nextIdPatient, m_nextIdConsultation, m_nextIdAntecedent, m_nextIdPrescription;
+        // Utilisateur actuellement connecté (pour la gestion des droits d'accès
+        Utilisateur* m_utilisateurConnecte;
+        // Chemin des fichiers de sauvegarde
+        const std::string FICHIER_ADMINS = "datas/administrateurs.csv";
+        const std::string FICHIER_PROFESSIONNELS = "datas/professionnels.csv";
+
+
+        // Méthodes de sauvegarde privées (aide au chargement et à la sauvegarde des données)
+        void chargerAdmins();
+        void chargerProfessionnels();
+
+        void sauvegarderAdmins() const;
+        void sauvegarderProfessionnels() const;
+
 };
 
 #endif // SYSTEME_H

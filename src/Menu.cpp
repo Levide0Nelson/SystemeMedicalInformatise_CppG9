@@ -1,0 +1,131 @@
+#include "Menu.h"
+
+
+
+Menu::Menu()
+{
+
+}
+
+
+void Menu::afficherMenuAdministrateur(Systeme& sys)
+{
+        int choix;
+        bool quitter = false;
+        while (!quitter)
+        {
+            std::cout << "\n--- Menu Administrateur ---\n";
+            std::cout << "1. Créer compte professionnel\n";
+            std::cout << "2. Créer compte administrateur\n";
+            std::cout << "3. Supprimer compte administrateur\n";
+            std::cout << "4. Supprimer compte professionnel\n";
+            std::cout << "5. Gérer droits d'accès\n";
+            std::cout << "6. Consulter statistiques système\n";
+            std::cout << "7. Quitter\n";
+            std::cout << "Votre choix : ";
+            std::cin >> choix;
+            std::cin.ignore();
+
+            switch (choix)
+            {
+                case 1:
+                    sys.ajouterProfessionnel();
+                    break;
+                case 2:
+                    sys.ajouterAdministrateur();
+                    break;
+                case 3:
+                    sys.supprimerAdministrateur();
+                    break;
+                case 4:
+                    sys.supprimerProfessionnel();
+                    break;
+                case 5:
+                    sys.gestionDroitsAcces();
+                    break;
+                case 6:
+                    sys.afficherStatistiques();
+                    break;
+                case 7:
+                    quitter = true;
+                    break;
+                default:
+                    std::cout << "Choix invalide.\n";
+            }
+        }
+}
+
+void Menu::ajouterNouveauProfessionnel()
+{
+    string nom,prenom,login,mdp;
+    int choixSpecialite;
+    Specialite specialite;
+    std::cout << "Nom du Professionnel de santé : ";
+    getline(cin, nom);
+    std::cout << "Prénom du Professionnel de santé : ";
+    getline(cin, prenom);
+    std::cout << "Identifiant par défaut du Professionnel de santé : ";
+    getline(cin, login);
+    std::cout << "Mot de Passe par défaut du Professionnel de santé (sans espace ni - ) : ";
+    cin >> mdp;
+    cin.ignore();
+    std::cout << "Choisissez la spécialité du Professionnel de santé : \n1. Médécine générale\n2. Cardiologie\n3. Pédiatrie\n 4. Chirurgie\n";
+    std::cout << "5. Ophtamologie\n6. Psychiatrie\n7. Dermatologie\n8. Orthopédie" << std::endl;
+    std::cout << "Votre choix : ";
+    choixSpecialite = validationChoixNbre(1,8,choixSpecialite,"Votre choix : ");
+    if (choixSpecialite == 1)
+        specialite = Specialite::MEDECINE_GENERALE;
+    else if (choixSpecialite == 2)
+        specialite = Specialite::CARDIOLOGIE;
+    else if (choixSpecialite == 3)
+        specialite = Specialite::PEDIATRIE;
+    else if (choixSpecialite == 4)
+        specialite = Specialite::CHIRURGIE;
+    else if (choixSpecialite == 5)
+        specialite = Specialite::OPHTAMOLOGIE;
+    else if (choixSpecialite == 6)
+        specialite = Specialite::PSYCHIATRIE;
+    else if (choixSpecialite == 7)
+        specialite = Specialite::DERMATOLOGIE;
+    else
+        specialite = Specialite::ORTHOPEDIE;
+
+    auto nouveauPro = make_shared<ProfessionnelDeSante>(001,login,mdp,nom,prenom, Specialite);
+    Sys.systeme.ajouterProfessionnel(nouveauPro);
+    Sys.systeme.sauvegarderProfessionnels("datas/professionnels.csv");
+    std::cout << "Profesionnel ajouté avec succès.\n";
+}
+
+void Menu::ajouterNouvelAdministrateur()
+{
+    string nom,prenom,login,mdp;
+    std::cout << "Nom du nouvel Administrateur : ";
+    getline(cin, nom);
+    std::cout << "Prénom du nouvel Administrateur : ";
+    getline(cin, prenom);
+    std::cout << "Identifiant par défaut du nouvel Administrateur : ";
+    getline(cin, login);
+    std::cout << "Mot de Passe par défaut du nouvel Administrateur (sans espace ni - ): ";
+    cin >> mdp;
+    cin.ignore();
+    auto nouvelAdmin = std::make_shared<Administrateur>(1,login,mdp,nom,prenom);
+    Sys.systeme.ajouterAdministrateur(nouvelAdmin);
+    Sys.systeme.sauvegarderAdministrateurs("datas/administrateurs.csv");
+    std::cout << "Administrateur ajouté avec succès.\n";
+}
+
+void Menu::supprimerAdmin()
+{
+    string nomComplet;
+    std::cout << "Nom complet de l'admin à supprimer : ";
+    cin.ignore();
+    getline(cin, nomComplet);
+
+    Sys.systeme.supprimerAdministrateur(nomComplet);
+}
+
+void Menu::supprimerPro()
+Menu::~Menu()
+{
+    //dtor
+}

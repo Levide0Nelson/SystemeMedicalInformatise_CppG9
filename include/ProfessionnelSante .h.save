@@ -1,19 +1,54 @@
-#ifndef PROFESSIONNELSANTE _H
-#define PROFESSIONNELSANTE _H
+#ifndef PROFESSIONNELDESANTE_H
+#define PROFESSIONNELDESANTE_H
+
+#include "Utilisateur.h"
+#include "Patient.h"
+#include "../Enumeration.h"
+#include <vector>
+#include <string>
 
 /** Classe ProfessionnelDeSante : Représente un professionnel de santé (médecin, infirmier, pharmacien, etc...)
     Permissions dans le système : Peut consulteer et créer des consultations pour les patients
 */
 
-class ProfessionnelSante
+class ProfessionnelDeSante : public Utilisateur
 {
     public:
-        ProfessionnelSante ();
-        virtual ~ProfessionnelSante ();
+        // Constructeur
+        ProfessionnelDeSante(int idPro, const std::string& nomPro, const std::string& prenomPro,const std::string& loginPro,
+                             const std::string& mdpPro,const std::string& role,const std::string& specialite, const std::string& grade);
+        // Destructeur (par défaut celui de la classe Utilisateur
+        ~ProfessionnelDeSante() = default;
+
+        // Accesseurs
+        std::string getSpecialite() const;
+        std::string getGrade() const;
+
+        // Mutateurs
+        void setSpecialite(const std::string& specialite);
+        void setGrade(const std::string& grade);
+            
+        /**Méthodes à implémenter*/
+        //void consulterPatients(const std::vector<Patient>& patients) const;
+
+        //const Patient* rechercherPatient(const std::vector<Patient> & patients, const std::string& critere) const;
+        //void consulterDossierMedical(const DossierMedical& dossier) const;
+        //void creerConsultation(DossierMedical& dossier);
+        //void modifierAntecedent(DossierMedical& dossier);
+        //void afficherAgenda(const std::vector<Consultation>& toutesConsultations) const;
+        //void prescrire(DossierMedical& dossier);
+        //void genererRapportConsultation(const DossierMedical& dossier) const;
+
+        std::string toCSV() const override;
+        void afficherMenu() const override;
+
 
     protected:
 
     private:
+        std::string m_specialite;
+        std::string m_grade;
+        std::vector<bool> m_disponibilite;
 };
 
-#endif // PROFESSIONNELSANTE _H
+#endif // PROFESSIONNELDESANTE_H
