@@ -72,6 +72,9 @@ char correctChoiceBoolean (char booleanChoice, std::string repeatedPhrase)
 
 void afficherBienvenue()
 {
+    #ifdef _WIN32
+    SetConsoleOutputCP(65001);
+    #endif // _WIN32
     std::cout << "\n";
     std::cout << "╔══════════════════════════════════════════╗" << std::endl;
     std::cout << "║     SYSTEME D'INFORMATION MEDICAL        ║" << std::endl;
@@ -81,6 +84,9 @@ void afficherBienvenue()
 
 void afficherMenuAuthentification()
 {
+    #ifdef _WIN32
+    SetConsoleOutputCP(65001);
+    #endif // _WIN32
     std::cout << "1. Se connecter\n";
     std::cout << "2. Quitter le programme\n";
     std::cout << "Votre choix : ";
@@ -157,6 +163,9 @@ int main() {
         {
             case 1 :
                 {
+                    #ifdef _WIN32
+                    SetConsoleOutputCP(65001);
+                    #endif // _WIN32
                    // Authentification
                     Utilisateur* user = boucleAuthentification(systeme);
                     if (user)

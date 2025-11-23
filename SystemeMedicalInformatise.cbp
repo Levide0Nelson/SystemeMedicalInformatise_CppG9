@@ -46,11 +46,13 @@
 		<Unit filename="include/Consultation.h" />
 		<Unit filename="include/Date.h" />
 		<Unit filename="include/DossierMedical.h" />
+		<Unit filename="include/Enumeration.h" />
 		<Unit filename="include/Examen.h" />
+		<Unit filename="include/FileUtils.h" />
 		<Unit filename="include/Medicament.h" />
 		<Unit filename="include/Patient.h" />
 		<Unit filename="include/Prescription.h" />
-		<Unit filename="include/ProfessionnelSante .h" />
+		<Unit filename="include/ProfessionnelSante.h" />
 		<Unit filename="include/Statistiques.h" />
 		<Unit filename="include/Systeme.h" />
 		<Unit filename="include/Utilisateur.h" />
@@ -69,10 +71,11 @@
 		<Unit filename="src/Date.cpp" />
 		<Unit filename="src/DossierMedical.cpp" />
 		<Unit filename="src/Examen.cpp" />
+		<Unit filename="src/FileUtils.cpp" />
 		<Unit filename="src/Medicament.cpp" />
 		<Unit filename="src/Patient.cpp" />
 		<Unit filename="src/Prescription.cpp" />
-		<Unit filename="src/ProfessionnelSante .cpp" />
+		<Unit filename="src/ProfessionnelSante.cpp" />
 		<Unit filename="src/Statistiques.cpp" />
 		<Unit filename="src/Systeme.cpp" />
 		<Unit filename="src/Utilisateur.cpp" />

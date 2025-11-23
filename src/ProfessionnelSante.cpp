@@ -1,8 +1,11 @@
 #include "ProfessionnelSante.h"
+<<<<<<< HEAD:src/ProfessionnelSante .cpp
 #include "Utilisateur.h"
 #include <iostream>
 #include <algorithm>
 #include <iomanip>
+=======
+>>>>>>> f4ecac3b7190474b50fbcf38405a2c49c4bc29c4:src/ProfessionnelSante.cpp
 
 ProfessionnelSante::ProfessionnelSante(int idPro, const std::string& nomPro, const std::string& prenomPro,const std::string& loginPro,
                              const std::string& mdpPro,const std::string& role,const std::string& specialite, const std::string& grade) :

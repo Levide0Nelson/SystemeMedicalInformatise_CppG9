@@ -47,4 +47,22 @@ enum class StatutConsultation
     ANNULEE
 };
 
+
+#include <string>
+
+// Fonction utilitaire pour convertir la spécialité en texte
+inline std::string specialiteToString(Specialite s) {
+    switch(s) {
+        case Specialite::CARDIOLOGIE: return "Cardiologie";
+        case Specialite::DERMATOLOGIE: return "Dermatologie";
+        case Specialite::PNEUMOLOGIE: return "Pneumologie";
+        case Specialite::ORTHOPEDIE: return "Orthopedie";
+        case Specialite::OPHTAMOLOGIE: return "Ophtalmologie";
+        case Specialite::MEDECINE_GENERALE: return "Medecine Generale";
+        case Specialite::PSYCHIATRIE: return "Psychiatrie";
+        case Specialite::PEDIATRIE: return "Pediatrie";
+        default: return "Inconnu";
+    }
+}
+
 #endif // ENUMERATION_H_INCLUDED

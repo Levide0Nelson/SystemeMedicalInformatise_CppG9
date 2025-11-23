@@ -1,3 +1,4 @@
+<<<<<<< HEAD:include/ProfessionnelSante .h
 #ifndef PROFESSIONNELDESANTE_H
 #define PROFESSIONNELDESANTE_H
 
@@ -6,6 +7,10 @@
 #include "../Enumeration.h"
 #include <vector>
 #include <string>
+=======
+#ifndef PROFESSIONNELSANTE_H
+#define PROFESSIONNELSANTE_H
+>>>>>>> f4ecac3b7190474b50fbcf38405a2c49c4bc29c4:include/ProfessionnelSante.h
 
 /** Classe ProfessionnelDeSante : Représente un professionnel de santé (médecin, infirmier, pharmacien, etc...)
     Permissions dans le système : Peut consulteer et créer des consultations pour les patients
@@ -51,4 +56,8 @@ class ProfessionnelDeSante : public Utilisateur
         std::vector<bool> m_disponibilite;
 };
 
+<<<<<<< HEAD:include/ProfessionnelSante .h
 #endif // PROFESSIONNELDESANTE_H
+=======
+#endif // PROFESSIONNELSANTE_H
+>>>>>>> f4ecac3b7190474b50fbcf38405a2c49c4bc29c4:include/ProfessionnelSante.h

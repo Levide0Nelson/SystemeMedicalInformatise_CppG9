@@ -1,18 +1,37 @@
 #ifndef CONSULTATION_H
 #define CONSULTATION_H
 
-/** Classe Consultation : Contient toutes les infos li�es � une consultation m�dicale
-*/
+#include <string>
+#include <memory> // Pour std::unique_ptr
+#include "Date.h"
+#include "Enumeration.h"
+#include "Prescription.h"
 
-class Consultation
-{
-    public:
-        Consultation();
-        virtual ~Consultation();
+class Consultation {
+private:
+    int idConsultation;
+    Date date;
+    int idProfessionnel; // Correction de la faute de frappe ici
+    int idPatient;
+    Specialite specialite; // BONUS : Catégorisation par spécialité
+    std::string motif;
+    std::string observations;
+    std::unique_ptr<Prescription> prescription; // BONUS : Gestion des prescriptions
 
-    protected:
+public:
+    // Constructeur complet
+    Consultation(int id, const Date& d, int idPS, int idPat, Specialite s, const std::string& m, const std::string& obs)
+        : idConsultation(id), date(d), idProfessionnel(idPS), idPatient(idPat), specialite(s), motif(m), observations(obs), prescription(nullptr) {}
 
-    private:
+    // Setter pour ajouter la prescription APRÈS la création de la consultation
+    void setPrescription(std::unique_ptr<Prescription> p) { prescription = std::move(p); }
+
+    // Getters essentiels pour les Statistiques (votre autre responsabilité)
+    Date getDate() const { return date; }
+    Specialite getSpecialite() const { return specialite; }
+    int getIdProfessionnel() const { return idProfessionnel; }
+
+    void afficher() const;
 };
 
 #endif // CONSULTATION_H

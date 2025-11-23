@@ -1,0 +1,154 @@
+# depslib dependency file v1.0
+1763753843 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\main.cpp
+	<iostream>
+	<limits>
+	<cstdlib>
+	"include/Patient.h"
+	"include/ProfessionnelSante.h"
+	"include/Consultation.h"
+	"include/Statistiques.h"
+	"include/Administrateur.h"
+	"include/FileUtils.h"
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\patient.h
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\professionnelsante .h
+
+1763756056 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\consultation.h
+	<string>
+	<memory>
+	"Date.h"
+	"Enumeration.h"
+	"Prescription.h"
+
+1763793682 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\date.h
+	<iostream>
+	<string>
+
+1763721776 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\prescription.h
+	<vector>
+	<string>
+	<memory>
+	"Medicament.h"
+
+1763721776 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\medicament.h
+	<string>
+
+1763753843 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\statistiques.h
+	<vector>
+	<memory>
+	<string>
+	<map>
+	"Utilisateur.h"
+	"DossierMedical.h"
+	"Consultation.h"
+	"Enumeration.h"
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\utilisateur.h
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\dossiermedical.h
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\administrateur.h
+
+1763587146 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\fileutils.h
+	<string>
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\administrateur.cpp
+	"Administrateur.h"
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\antecedent.cpp
+	"Antecedent.h"
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\antecedent.h
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\authentification.cpp
+	"Authentification.h"
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\authentification.h
+
+1763793776 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\date.cpp
+	"../include/Date.h"
+	<iostream>
+	<string>
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\dossiermedical.cpp
+	"DossierMedical.h"
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\examen.cpp
+	"Examen.h"
+
+1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\examen.h
+
+1763587146 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\fileutils.cpp
+	"../include/FileUtils.h"
+	<fstream>
+	<iostream>
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\patient.cpp
+	"Patient.h"
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\professionnelsante .cpp
+	"ProfessionnelSante .h"
+
+1763575196 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\utilisateur.cpp
+	"Utilisateur.h"
+
+1763721776 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\medicament.cpp
+	"Medicament.h"
+	<iostream>
+
+1763721776 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\prescription.cpp
+	"Prescription.h"
+	<iostream>
+
+1763754384 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\professionnelsante.cpp
+	"ProfessionnelSante.h"
+
+1763754557 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\professionnelsante.h
+
+1763753843 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\enumeration.h
+	<string>
+
+1763753843 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\consultation.cpp
+	"Consultation.h"
+	<iostream>
+
+1763756059 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\statistiques.cpp
+	"../include/Statistiques.h"
+	<iostream>
+	<algorithm>
+	<map>
+	"../include/Utilisateur.h"
+	"../include/DossierMedical.h"
+	"../include/Consultation.h"
+	"../include/Enumeration.h"
+
+1763756050 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\src\systeme.cpp
+	"../include/Systeme.h"
+	"../include/ProfessionnelSante.h"
+	"../include/Patient.h"
+	"../include/Administrateur.h"
+	"../include/Enumeration.h"
+	<iostream>
+	<algorithm>
+	<limits>
+	<sstream>
+	<map>
+
+1763753843 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\systeme.h
+	<vector>
+	<memory>
+	<string>
+	"Utilisateur.h"
+	"Patient.h"
+	"ProfessionnelSante.h"
+	"Administrateur.h"
+	"DossierMedical.h"
+	"Consultation.h"
+	"Prescription.h"
+	"Medicament.h"
+	"Antecedent.h"
+	"Examen.h"
+	"Date.h"
+	"Enumeration.h"
+

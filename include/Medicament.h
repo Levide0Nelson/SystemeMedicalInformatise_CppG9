@@ -1,20 +1,16 @@
 #ifndef MEDICAMENT_H
 #define MEDICAMENT_H
+#include <string>
 
-/** Classe Medicament : Permet la modélisation des prescriptions faites lors des consultations
-    Assure le suivi thérapeutique du patient, Préviens les interactions médicamenteuses ou les
-    allergies (via les antécédents), Gère les stocks ou disponibiltés éventuellement
-*/
-
-class Medicament
-{
-    public:
-        Medicament();
-        virtual ~Medicament();
-
-    protected:
-
-    private:
+class Medicament {
+private:
+    std::string nomCommercial; // Ex: Doliprane
+    std::string principeActif; // Ex: ParacÃ©tamol
+public:
+    Medicament(const std::string& nom, const std::string& actif) : nomCommercial(nom), principeActif(actif) {}
+    void afficher() const;
+    std::string getNomCommercial() const { return nomCommercial; } // Pour statistiques futures
 };
-
 #endif // MEDICAMENT_H
+
+    
