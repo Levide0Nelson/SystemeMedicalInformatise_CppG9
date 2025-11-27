@@ -1,15 +1,24 @@
 # depslib dependency file v1.0
+<<<<<<< HEAD
 1763753843 source:c:\users\administrateur\videos\systememedicalinformatise_cppg9\main.cpp
+=======
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\main.cpp
+>>>>>>> 5c2274c (Ajout des classes Antecedent.h, DossierMedical.h et Patient.h)
 	<iostream>
 	<limits>
 	<cstdlib>
 	"include/Patient.h"
+<<<<<<< HEAD
 	"include/ProfessionnelSante.h"
+=======
+	"include/ProfessionnelSante .h"
+>>>>>>> 5c2274c (Ajout des classes Antecedent.h, DossierMedical.h et Patient.h)
 	"include/Consultation.h"
 	"include/Statistiques.h"
 	"include/Administrateur.h"
 	"include/FileUtils.h"
 
+<<<<<<< HEAD
 1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\patient.h
 
 1763575196 c:\users\administrateur\videos\systememedicalinformatise_cppg9\include\professionnelsante .h
@@ -151,4 +160,78 @@
 	"Examen.h"
 	"Date.h"
 	"Enumeration.h"
+=======
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\patient.h
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\professionnelsante .h
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\consultation.h
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\statistiques.h
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\administrateur.h
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\fileutils.h
+	<string>
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\administrateur.cpp
+	"Administrateur.h"
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\antecedent.cpp
+	"Antecedent.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\antecedent.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\authentification.cpp
+	"Authentification.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\authentification.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\consultation.cpp
+	"Consultation.h"
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\date.cpp
+	"Date.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\date.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\dossiermedical.cpp
+	"DossierMedical.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\dossiermedical.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\examen.cpp
+	"Examen.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\examen.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\medicament.cpp
+	"Medicament.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\medicament.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\patient.cpp
+	"Patient.h"
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\prescription.cpp
+	"Prescription.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\prescription.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\professionnelsante .cpp
+	"ProfessionnelSante .h"
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\statistiques.cpp
+	"Statistiques.h"
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\systeme.cpp
+	"Systeme.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\systeme.h
+
+1763636079 source:c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\src\utilisateur.cpp
+	"Utilisateur.h"
+
+1763636079 c:\users\utilisateur\documents\ornella\systememedicalinformatise_cppg9\include\utilisateur.h
+>>>>>>> 5c2274c (Ajout des classes Antecedent.h, DossierMedical.h et Patient.h)
 
