@@ -1,201 +1,103 @@
 #include <iostream>
 #include <string>
-#include "Systeme.h"
+#include <limits>
+#include "include/Systeme.h"
 
 #ifdef _WIN32
 #include <windows.h>
-#endif // _WIN32
+#endif
 
-/** Programme principal du Système SIM
-*/
+using namespace std;
 
-int correctChoiceNumber(int minim, int maxi, int choice, std::string repetedPhrase)
-{
-    std::string stringChoice = std::to_string(choice);
-    while(true)
-    {
-
-        getline(std::cin, stringChoice);
-
-        try
-        {
-            choice = std::stoi(stringChoice);  // Convertion en entier
-        }
-        catch (...)
-        {
-            std::cout << "Entrée invalide. Veuillez entrer un nombre entre " << minim << " et " << maxi << std::endl;
-            std::cout << repetedPhrase;
-            continue;
-        }
-        if (choice < minim || choice >maxi)
-        {
-            std::cout << "Veuillez entrer un nombre entre " << minim << " et " << maxi << std::endl;
-            std::cout << repetedPhrase;
-        }
-        else
-        {
-            return choice;
-        }
-    }
-}
-
-char correctChoiceBoolean (char booleanChoice, std::string repeatedPhrase)
-{
-    std::string stringBooleanChoice(1,booleanChoice);
-    while (true)
-    {
-        getline(std::cin, stringBooleanChoice);
-
-        try
-        {
-            booleanChoice = stringBooleanChoice.at(0);
-        }
-        catch (...)
-        {
-            std::cout << "Veuillez entrez une des options pour continuer." << std::endl;
-            std::cout << repeatedPhrase;
-            continue;
-        }
-
-        if (booleanChoice != 'o' && booleanChoice != 'O' && booleanChoice != 'n' && booleanChoice != 'N')
-        {
-            std::cout << "Entrée invalide. Veuillez entrer les options \"o\" ou \"n\" pour continuer." << std::endl;
-            std::cout << repeatedPhrase;
-        }
-        else
-        {
-            return booleanChoice;
-        }
-    }
-}
-
-
+// Juste pour afficher le titre du projet au début
 void afficherBienvenue()
 {
     #ifdef _WIN32
-    SetConsoleOutputCP(65001);
-    #endif // _WIN32
-    std::cout << "\n";
-    std::cout << "╔══════════════════════════════════════════╗" << std::endl;
-    std::cout << "║     SYSTEME D'INFORMATION MEDICAL        ║" << std::endl;
-    std::cout << "║ Gestion     Hospitalière    Centralisée  ║" << std::endl;
-    std::cout << "╚══════════════════════════════════════════╝" << std::endl;
+    SetConsoleOutputCP(65001); // Permet d'avoir les accents corrects sur Windows
+    #endif
+    cout << "\n";
+    cout << "==========================================" << endl;
+    cout << "     SYSTEME D'INFORMATION MEDICAL        " << endl;
+    cout << "==========================================" << endl;
 }
 
-void afficherMenuAuthentification()
+// Cette fonction gère la connexion (Login/Mot de passe)
+// On laisse 3 chances à l'utilisateur avant de bloquer
+Utilisateur* boucleAuthentification(Systeme& systeme)
 {
-    #ifdef _WIN32
-    SetConsoleOutputCP(65001);
-    #endif // _WIN32
-    std::cout << "1. Se connecter\n";
-    std::cout << "2. Quitter le programme\n";
-    std::cout << "Votre choix : ";
-}
+    string login, password;
+    Utilisateur* user = nullptr;
+    int tentatives = 0;
 
-/**
- * Boucle d'authentification
- * Demande username/password, valide, retourne l'utilisateur connecté
- */
-
- Utilisateur* boucleAuthentification(Systeme& systeme)
- {
-     const int NB_TENTATIVES_CONNEXION = 3;
-     int essais = 0;
-     std::string login, password;
-     Utilisateur* userConnecte = nullptr;
-
-     while (!userConnecte && essais < NB_TENTATIVES_CONNEXION)
-     {
-         std::cout << "\n\t==== Authentification ====\n";
-         std::cout << "Login : ";
-         std::getline(std::cin, login);
-
-         std::cout << "Mot de passe : ";
-         std::getline(std::cin , password);
-
-         userConnecte = systeme.authentifier(login, password);
-
-         if (!userConnecte)
-         {
-             essais++;
-             std::cout << "\n[ERREUR] Identifiants incorrects. Veuillez réessayer.\n";
-             std::cout << NB_TENTATIVES_CONNEXION - essais << " tentatives restantes / " << NB_TENTATIVES_CONNEXION << std::endl;
-         }
-         else
-         {
-             std::cout << "\n[SUCCES] Authentification réussie.\n";
-             std::cout << "Bienvenue " << userConnecte -> getNom() << " " << userConnecte -> getPrenom() << " !\n";
-         }
-     }
-
-     if (!userConnecte)
-     {
-         std::cout << "[ECHEC] Trop de tentatives. Veuillez recommencer ou contacter un administrateur.\n";
-     }
-     return userConnecte;
- }
-
-int main() {
-
-    #ifdef _WIN32
-    SetConsoleOutputCP(65001);
-    #endif // _WIN32
-
-    afficherBienvenue();
-
-    // Initialisation de système
-    Systeme systeme;
-
-    // Chargement des données depuis les fichiers
-    std::cout << "[ Chargement des données ]...\n";
-    systeme.chargerDonnes();
-    std::cout << "[ Données chargées avec succès. ]\n" << std::endl;
-
-    bool systemeEnExecution = true;
-
-    while (systemeEnExecution)
+    while (!user && tentatives < 3)
     {
-        afficherMenuAuthentification();
-        int choix;
-        choix = correctChoiceNumber(1,2,choix,"Votre choix : ");
+        cout << "\n--- Connexion ---\n";
+        cout << "Login : ";
+        getline(cin, login); // On utilise getline pour permettre les espaces si besoin
 
-        switch (choix)
-        {
-            case 1 :
-                {
-                    #ifdef _WIN32
-                    SetConsoleOutputCP(65001);
-                    #endif // _WIN32
-                   // Authentification
-                    Utilisateur* user = boucleAuthentification(systeme);
-                    if (user)
-                    {
-                        // Lancement du menu de l'utilisateur
-                        std::cout << "\n\tLancement du menu utilisateur...\n";
-                        systeme.lancerMenu();
-                    }
-                    break;
-                }
-            case 2 :
-                {
-                    char confirmQuit;
-                    std::cout << "Voulez-vous vraiment quitter ? (o/n) : ";
-                    confirmQuit = correctChoiceBoolean(confirmQuit, "Voulez-vous vraiment quitter ? (o/n) : ");
-                    if (confirmQuit == 'o' || confirmQuit == 'O')
-                    {
-                        //Quitter
-                        std::cout << "\n [ Sauvegarde des données en cours... ]\n";
-                        systeme.sauvegarderDonnees();
-                        std::cout << "[ Données savegardées. ]\n";
-                        std::cout << "\tFermeture du système.\n" << std::endl;
-                        systemeEnExecution = false;
-                    }
-                    break;
-                }
-            default :
-                std::cout << "[ERREUR] Choix invalide. Veuillez réessayer." << std::endl;
+        cout << "Mot de passe : ";
+        getline(cin, password);
+
+        // On demande au système de vérifier si ça existe
+        user = systeme.authentifier(login, password);
+
+        if (!user) {
+            cout << "[ERREUR] Identifiants incorrects. Reessayez.\n";
+            tentatives++;
         }
     }
 
+    if (!user) cout << "[ECHEC] Trop de tentatives.\n";
+    return user;
+}
+
+int main() {
+    afficherBienvenue();
+
+    // 1. On démarre le système et on charge les fichiers CSV
+    Systeme systeme;
+    systeme.chargerDonnes();
+
+    bool running = true;
+    while (running)
+    {
+        // Petit menu de démarrage
+        cout << "\n1. Se connecter\n";
+        cout << "2. Quitter\n";
+        cout << "Votre choix : ";
+
+        int choix;
+        cin >> choix;
+
+        // Vérification : Si l'utilisateur tape des lettres au lieu de chiffres
+        if (cin.fail()) {
+             cin.clear(); // On remet cin en marche
+             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // On vide l'erreur
+             choix = 0;
+        }
+        cin.ignore(); // Important : on vide la mémoire tampon pour que les getline suivants marchent bien
+
+        if (choix == 1) {
+            // 2. On lance la connexion
+            Utilisateur* user = boucleAuthentification(systeme);
+
+            if (user) {
+
+                cout << "\n[Succes] Bienvenue " << user->getNom() << " !\n";
+                // 3. Si c'est bon, on lance le vrai menu principal (celui avec toutes les options)
+                systeme.lancerMenu();
+            }
+        }
+        else if (choix == 2) {
+            // 4. Si on quitte, on pense à sauvegarder avant
+            cout << "\n[Fermeture] Sauvegarde en cours...\n";
+            systeme.sauvegarderDonnees();
+            cout << "Au revoir !\n";
+            running = false;
+        }
+        else {
+            cout << "Choix invalide.\n";
+        }
+    }
     return 0;
 }
